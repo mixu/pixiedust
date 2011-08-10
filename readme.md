@@ -99,10 +99,6 @@ You can define the search performed when you are not passing a number.
       console.log(user);
     });
 
-    Zendesk.users(["End User", "John Doe"]).each(function(user) {
-      console.log(user);
-    });
-
 
 ## Paginated results (if the underlying API paginates results)
 
@@ -115,8 +111,6 @@ You can define the search performed when you are not passing a number.
     // per_page(15)
 
 
-    // aliases: offset(x) = page(x) and limit(y) = per_page(y)
-
 ## Additional search terms can be combined (if the underlying API supports this)
 
    
@@ -124,6 +118,8 @@ You can define the search performed when you are not passing a number.
 ## Sorting
 
 Sorting will be applied to the results from the API -- it does not require that the underlying API supports this.
+
+This means that if the results paginated but the underlying API does not support sorting, then you need to fetch all items to ensure global sort order.
 
     Zendesk.users().sort(function(a, b) { 
       // return 0, 1, or -1 as in normal array sort functions
@@ -142,6 +138,8 @@ Sorting will be applied to the results from the API -- it does not require that 
 ## Filtering
 
 Filters will be applied to the results from the API -- it does not require that the underlying API supports this.
+
+Filters allow you to express additional condtions which are not supported by the underlying API. Since filters are applied afterwards, note that with result pagination this may lead to an uneven (or empty) result set.
 
     Zendesk.users().filter(function(item) { return (item.id % 2 == 0); }).each(function(user){
       // only process items where id is even.    
