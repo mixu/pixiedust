@@ -1,4 +1,19 @@
-{
-  "name":"pixiedust",
-  "main":"./index.js"
+{ 
+  "name": "pixiedust",
+  "description": "RESTful lazy chainable API generator",
+  "version": "0.0.1",
+  "author": {
+    "name": "Mikito Takada",
+    "email": "mixu@mixu.net",
+    "url": "http://blog.mixu.net/"
+    },
+  "keywords": ["api", "client", "rest"],
+  "repository": "git://github.com/mixu/pixiedust",
+  "main": "index.js",
+  "dependencies": {
+    "pixiedust": "0.0.x"
+  },
+  "devDependencies": {
+    "async_testing": "0.3.x"
+  }
 }
