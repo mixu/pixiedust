@@ -10,9 +10,6 @@
   "keywords": ["api", "client", "rest"],
   "repository": "git://github.com/mixu/pixiedust",
   "main": "index.js",
-  "dependencies": {
-    "pixiedust": "0.0.x"
-  },
   "devDependencies": {
     "async_testing": "0.3.x"
   }
