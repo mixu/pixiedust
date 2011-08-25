@@ -1,6 +1,6 @@
 var Search = require('../lib/search.js');
 
-// BindURL 
+// BindURL
 exports['get user by id'] = function(test){
   test.deepEqual(
     '/users/123.json',
@@ -45,12 +45,12 @@ var definition = {
     me: {
       url: '/users/current.json'
     },
-    create: {   
+    create: {
       url: '/users.json',
       format: 'json',
       wrap: 'user'  // wrap the data into { user: ... }
     },
-    read: {   
+    read: {
       url: '/users/{id}.json',
       cache: false,
     },
@@ -59,12 +59,12 @@ var definition = {
       wrap: 'user'  // wrap the data into { user: ... }
     },
     del: {
-      url: '/users/{id}.json'      
+      url: '/users/{id}.json'
     },
     list: {
       url: '/list.json',
       pagination: true,
-      filter: { 
+      filter: {
         by_name: {
           param: 'query',
         },
@@ -124,7 +124,7 @@ exports['read should check the cache'] = function(test){
       [ { cache:true } ],
       data
     );
-    test.finish();      
+    test.finish();
   });
 };
 
@@ -143,8 +143,8 @@ exports['read should fall back to get if cache is empty and set cache'] = functi
         }
       };
   var s = new Search().where(333).execute(definition, {
-    get: function(url, conditions, callback) {       
-      test.ok(true);       
+    get: function(url, conditions, callback) {
+      test.ok(true);
       callback({ get: true });
     },
     json: function(data) { return data; }
@@ -156,7 +156,7 @@ exports['read should fall back to get if cache is empty and set cache'] = functi
   });
   // we sould also read from the cache now
   var s = new Search().where(333).execute(definition, {
-    get: function(url, conditions, callback) {       
+    get: function(url, conditions, callback) {
       test.ok(false); // should not do a get
     }
   }, function(data) {
@@ -171,15 +171,15 @@ exports['read should fall back to get if cache is empty and set cache'] = functi
 
 exports['list by name when string is passed'] = function(test) {
   var s = new Search().where("John Doe").execute(definition, { 
-      get: function(url, conditions) { 
+      get: function(url, conditions) {
           test.deepEqual(
             '/list.json',
             url
-          );    
+          );
           test.deepEqual(
             { query: "John Doe"},
             conditions
-          );  
+          );
           test.finish();
       }
     });
@@ -187,15 +187,15 @@ exports['list by name when string is passed'] = function(test) {
 
 exports['list by name when name is passed'] = function(test) {
   var s = new Search().where({ name: "John Doe" }).execute(definition, { 
-      get: function(url, conditions) { 
+      get: function(url, conditions) {
         test.deepEqual(
           '/list.json',
           url
-        );    
+        );
         test.deepEqual(
           { query: "John Doe"},
           conditions
-        );  
+        );
         test.finish();
       }
     });
@@ -207,11 +207,11 @@ exports['list by role when role is passed'] = function(test) {
         test.deepEqual(
           '/list.json',
           url
-        );    
+        );
         test.deepEqual(
           { role: 2 },
           conditions
-        );  
+        );
         test.finish();
       }
     });
@@ -223,11 +223,11 @@ exports['find by organization when organization is passed'] = function(test) {
         test.deepEqual(
           '/organizations/999/users.json',
           url
-        );    
+        );
         test.deepEqual(
           {},
           conditions
-        );  
+        );
         test.finish();
       }
     });
@@ -239,17 +239,17 @@ exports['find by group when group is passed'] = function(test) {
         test.deepEqual(
           '/groups/999/users.json',
           url
-        );    
+        );
         test.deepEqual(
           {},
           conditions
-        );  
+        );
         test.finish();
       }
     });
 };
 
-// test the identities mock 
+// test the identities mock
 // 1) when the search is an id, an id should be passed
 // 2) when the search is not an id, it should first be resolved, then passed
 
