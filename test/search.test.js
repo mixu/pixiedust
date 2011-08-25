@@ -168,7 +168,6 @@ exports['read should fall back to get if cache is empty and set cache'] = functi
   });
 };
 
-
 exports['list by name when string is passed'] = function(test) {
   var s = new Search().where("John Doe").execute(definition, { 
       get: function(url, conditions) {
